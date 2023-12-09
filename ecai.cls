@@ -1341,16 +1341,16 @@
 \thispagestyle{ecaifirst}
 \textheight\ftextheight
 
-\newtheorem{theorem}{Theorem}
+%\newtheorem{theorem}{Theorem}
 
 %List within theorem
-\newcounter{theoremlistno}
-\newenvironment{theoremlist}{%
-\begin{list}{\arabic{theoremlistno}.}{\usecounter{theoremlistno}
-  \setlength{\leftmargin}{10pt}
-  \setlength{\labelsep}{6pt}
-  \setlength{\labelwidth}{6pt}
-  \sl}}
-{\end{list}}
+%\newcounter{theoremlistno}
+%\newenvironment{theoremlist}{%
+%\begin{list}{\arabic{theoremlistno}.}{\usecounter{theoremlistno}
+%  \setlength{\leftmargin}{10pt}
+%  \setlength{\labelsep}{6pt}
+%  \setlength{\labelwidth}{6pt}
+%  \sl}}
+%{\end{list}}
 
 \endinput
