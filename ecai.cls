@@ -713,9 +713,10 @@
 %\fi
 
 \def\paperid@fmt{%
-  Paper \#%
   \ifdefined\@paperid
-    \@paperid
+    Paper \#\@paperid
+  \else
+    [use \texttt{{\textbackslash}paperid\{...\}} to specify your paper submission number]
   \fi
   }
 \def\makepaperid{%
