@@ -1,24 +1,25 @@
 % documentclass ecai
 %
 % This is file `ecai.cls', the recommended style file for ECAI
-% submission and camera-ready copy, for use with latex2e 
-% in native mode. 
+% submission and camera-ready copy, for use with latex2e. 
+
+% This file is distributed by EurAI, the European Association for 
+% Artificial Intelligence in the hope that it will be useful,
+% but WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 % This file is an adaption of ecai98.cls. It provides the same style 
-% as ecai98.cls but removes any footer.
+% as ecai98.cls but removes any footers.
 % ecai98.cls was created by merging the ECAI-96 document style with the 
 % latex2e article class. It has inherited most of the features (and bugs) 
 % of the ECAI-96 document style, but only promises to approximate that style.
 
-% For users without access to latex2e, a style file for latex209
-% is also available. This works with latex209 (but not with latex2e).
-
 % Authorship and copyright:
 % latex2e article.cls - copyright, the LaTeX3 project
 % latex2e size10.clo  - copyright, the LaTeX3 project
-% ecai96.sty          - based on original 209 aritcle style by Leslie
+% ecai96.sty          - based on original 209 article style by Leslie
 %                       Lamport, successively modified by Oliver Ludwig,
-%                       Geeti Granger and Jenny Smith.
+%                       Geeti Granger and Jenny Smith
 % ecai98.cls          - copyright 1998, Roger Evans, University of
 %                       Brighton
 % ecai2000.cls        - copyright 2000, Werner Horn, Austrian Research
@@ -27,24 +28,21 @@
 %                       Vrije Universiteit Amsterdam, 
 % ecai.cls            - Generic (year-free). Renamed but essentially unmodified 
 %                       from the ecai2014.cls version.  I claim no copyright,
-%                       just cleaned up a bit.
-%                       Gal A. Kaminka, Bar Ilan University.
- 
-% This file is distributed in the hope that it will be useful,
-% but WITHOUT ANY WARRANTY; without even the implied warranty of
-% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-
-% This file is NOT SUPPORTED.
-% Comments or bugs may be reported to ecai2004@dsic.upv.es
-
-% 2023-01-24 adaptation to IOS Press book markup; please complain to latex-support@vtex.lt
+%                       just cleaned up a bit. Gal A. Kaminka, Bar Ilan University
+% January-August 2023 - adaptation to IOS Press book markup by vtex.lt
+% December 2023       - clean-up as well as minor corrections and simplifications 
+%                       by Ulle Endriss, University of Amsterdam
 % 
 % ----------------------------------------------------------------------
 
 \ProvidesClass{ecai}
-              [2023/08/02 v03.009 ECAI document class]
+              [2023/12/10 v04 ECAI document class]
+%             [2023/08/02 v03.009 ECAI document class]
 %             [2015/09/29 v02 ECAI document class]
 %             [2002/03/06 v01 ECAI-2004 document class]
+
+\usepackage{comment}
+\usepackage[switch]{lineno}
 
 \newcommand\@ptsize{}
 \newif\if@restonecol
@@ -508,7 +506,7 @@
       \fi
       }%
     \ifnum\value{orcids}>0\relax
-      ORCiD ID: 
+      %ORCID: 
       \let\fnms\@firstofone
       \let\snm\@firstofone
       \let\orcid\@gobble
@@ -520,7 +518,8 @@
         \edef\@orcid{\csname orcid@\@tempa\endcsname}%
         \if*\@orcid*\else
           \orcid@delim
-          \csname author@\@tempa\endcsname
+          ORCID
+          (\csname author@\@tempa\endcsname):
           ~%
           \edef\@full@orcid{\orcid@href\@orcid}%
           \expandafter\url\expandafter{\@full@orcid}%
@@ -844,9 +843,7 @@
     \fi
   \egroup
 % \setcounter{footnote}{0}%
-  %
-  \bibliographystyle{ecai}%
-  %
+    
   \hskip-10\p@
   \usebox\abstract@box
   }%
@@ -897,7 +894,7 @@
      \nobreak
      \vskip 3ex
      \@afterheading}
-\newcommand\section{\@startsection {section}{1}{\z@}%
+\newcommand\section{\@startsection{section}{1}{\z@}%
                                    {-16.5\p@ \@plus -5\p@ \@minus -3\p@}%
                                    {5.5\p@ \@plus5\p@}%
                                    {\normalfont\seca@mysize\bfseries\raggedright}}
@@ -909,14 +906,15 @@
                                    {-16.5\p@ \@plus -5\p@ \@minus -3\p@}%
                                    {5.5\p@ \@plus5\p@}%
                                    {\normalfont\secc@mysize\itshape\raggedright}}
-\newcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
-                                    {3.25ex \@plus1ex \@minus.2ex}%
+\newcommand\paragraph{\@startsection{paragraph}{4}{-0.52ex}% % hack to get indentation of paragraphs right
+                                   {1ex \@plus1ex \@minus .2ex}%
+                                   {-1em}%
+                                   {\normalfont\normalsize\bfseries}}
+\newcommand\subparagraph{\@startsection{subparagraph}{5}{\parindent}%
+                                    {1ex \@plus1ex \@minus .2ex}%
                                     {-1em}%
                                     {\normalfont\normalsize\bfseries}}
-\newcommand\subparagraph{\@startsection{subparagraph}{5}{\parindent}%
-                                       {3.25ex \@plus1ex \@minus .2ex}%
-                                       {-1em}%
-                                      {\normalfont\normalsize\bfseries}}
+
 \if@twocolumn
   \setlength\leftmargini  {10\p@}
 \else
@@ -1031,7 +1029,7 @@
 \def\fnum@figure{\figurename~\thefigure}
 \newenvironment{figure}
                {\@float{figure}}
-               {\end@float}
+               {\vspace*{-3ex}\end@float} % vertical space hack to get similar spacing as for tables, where captions are on top
 \newenvironment{figure*}
                {\@dblfloat{figure}}
                {\end@dblfloat}
@@ -1055,8 +1053,8 @@
   }
 \newlength\abovecaptionskip
 \newlength\belowcaptionskip
-\setlength\abovecaptionskip{6\p@}
-\setlength\belowcaptionskip{2\p@}
+\setlength\abovecaptionskip{0\p@} % was 6, producing too much space
+\setlength\belowcaptionskip{-8\p@} % was 2, producing too much space
 \long\def\@makecaption#1#2{%
   \vskip\abovecaptionskip
   \sbox\@tempboxa{{\captsize{\bfseries #1.}\quad #2\normalsize}}%
@@ -1067,6 +1065,7 @@
     \hbox to\hsize{\hfil\box\@tempboxa\hfil}%
   \fi
   \vskip\belowcaptionskip}
+  
 \DeclareOldFontCommand{\rm}{\normalfont\rmfamily}{\mathrm}
 \DeclareOldFontCommand{\sf}{\normalfont\sffamily}{\mathsf}
 \DeclareOldFontCommand{\tt}{\normalfont\ttfamily}{\mathtt}
@@ -1242,9 +1241,12 @@
     \@dblmaxsep 20pt
 \fi
 
-% for acknowledgements
-\def\acknowledgements{\section*{\bf Acknowledgements}}
-\def\ack{\acknowledgements}
+% acknowledgements: omit when doubleblind option is used
+\if@double@blind@
+  \excludecomment{ack}
+\else
+  \newenvironment{ack}{\section*{Acknowledgements}}{}
+\fi
 
 \def\lquotation{\list{}{\listparindent 1.5em
  \setlength{\rightmargin}{1true cm}
@@ -1272,11 +1274,18 @@
     \end{center}
   \endgroup}
 
-% support page numbers during submission phase
+% show page numbers in doubleblind mode
 \gdef\@myfinalfoot{}
-\def\ecaisubmission{%
+\if@double@blind@
   \gdef\@myfinalfoot{\normalsize\hfill\thepage\hfill}%
-  }
+\fi
+
+% show line numbers in doublind mode
+\if@double@blind@
+  \linenumbers
+\fi
+
+% paper id
 \def\paperid#1{\def\@paperid{#1}}
 
 %section title
@@ -1285,20 +1294,18 @@
 % author name
 \def\authorfoot#1{\gdef\@authorfoot{#1}}
 
-% defaults to empty footer for ECAI2004
-% IOS will insert footers
+% IOS Press will insert footers
 \sectionfoot{}
 \authorfoot{}
 
 % Supply start page for each paper
-
 \def\ecai#1{
 \setcounter{page}{#1}
-\gdef\@myauth{\footsize\copyright\ 2004 \@authorfoot}
-\gdef\@myref{\footsize ECAI 2004. {\it 16th European Conference on
-  Artificial Intelligence\/}}
-\gdef\@myedit{\footsize Edited by Frank van Harmelen}
-\gdef\@mycopyright{\footsize Published in 2004 by IOS Press}
+%\gdef\@myauth{\footsize\copyright\ 2004 \@authorfoot}
+%\gdef\@myref{\footsize ECAI 2004. {\it 16th European Conference on
+%  Artificial Intelligence\/}}
+%\gdef\@myedit{\footsize Edited by Frank van Harmelen}
+%\gdef\@mycopyright{\footsize Published in 2004 by IOS Press}
 }
 
 %Set page counter to one by default
@@ -1317,6 +1324,12 @@
 \hbox to \textwidth{\noindent \@myref\hfill}
 \hbox to \textwidth{\noindent \@myedit\hfill}
 \hbox to \textwidth{\noindent \@mycopyright \hfill}}}
+
+% bibliography style
+\usepackage[numbers]{natbib}
+\renewcommand{\bibfont}{\footnotesize}
+\bibliographystyle{abbrvnat}
+%\bibliographystyle{ecai}
 
 %***************************************
 %Pagestyle to give correct page depth for second and subsequent pages
@@ -1342,7 +1355,6 @@
 \textheight\ftextheight
 
 %\newtheorem{theorem}{Theorem}
-
 %List within theorem
 %\newcounter{theoremlistno}
 %\newenvironment{theoremlist}{%

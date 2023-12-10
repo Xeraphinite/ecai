@@ -1,13 +1,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%% LaTeX Template for ECAI Papers 
-%%% Prepared by Ulle Endriss (version 0.9 of 2023-11-07)
+%%% Prepared by Ulle Endriss (version 1.0 of 2023-12-10)
 
-%%% To be used with the ECAI class file provided by IOS Press:
-%%% - https://vtex-soft.github.io/texsupport.iospress-ecai/
-%%% You will need the latest versions of the following files:
-%%% - ecai.cls (class file)
-%%% - ecai.bst (bibliography style file)
+%%% To be used with the ECAI class file ecai.cls.
 %%% You also will need a bibliography file (such as mybibfile.bib).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -57,7 +53,7 @@
 
 \begin{frontmatter}
 
-%%% Use this command to specify your EasyChair submission number.
+%%% Use this command to specify your submission number.
 %%% In doubleblind mode, it will be printed on the first page.
 
 \paperid{123} 
@@ -68,9 +64,14 @@
 European Conference on Artificial Intelligence}
 
 %%% Use this combinations of commands to specify all authors of your 
-%%% paper. [[TODO: explain name commands]]
+%%% paper. Use \fnms{} and \snm{} to indicate everyone's first names 
+%%% and surname. This will help the publisher with indexing the 
+%%% proceedings. Please use a reasonable approximation in case your 
+%%% name does not neatly split into "first names" and "surname".
 %%% Specifying your ORCID digital identifier is optional. 
-%%% [[TODO: new commands for corresponding author and contribution notes]]
+%%% Use the \thanks{} command to indicate one or more corresponding 
+%%% authors and their email address(es). If so desired, you can specify
+%%% author contributions using the \footnote{} command.
 
 \author[A]{\fnms{First}~\snm{Author}\orcid{....-....-....-....}\thanks{Corresponding Author. Email: somename@university.edu.}\footnote{Equal contribution.}}
 \author[B]{\fnms{Second}~\snm{Author}\orcid{....-....-....-....}\footnotemark}
@@ -78,7 +79,9 @@ European Conference on Artificial Intelligence}
 
 \address[A]{Short Affiliation of First Author}
 \address[B]{Short Affiliation of Second Author and Third Author}
-\address[C]{Short Affiliation of Third Author}
+\address[C]{Short Alternate Affiliation of Third Author}
+
+%%% Use this environment to include an abstract of your paper.
 
 \begin{abstract}
 This document outlines the formatting instructions for submissions to 
@@ -105,9 +108,7 @@ Artificial Intelligence (EurAI, see Figure~\ref{fig:eurai}).
 \begin{figure}[h]
 \centering
 \includegraphics[width=2.5cm]{eurai}
-\vspace*{-10pt}
 \caption{Logo of the European Association for Artificial Intelligence.}
-\vspace*{-15pt}
 \label{fig:eurai}
 \end{figure}
 
@@ -122,10 +123,10 @@ that you must use the \texttt{doubleblind} option for submission.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Example for a section header}
+\section{Typeset section headers in sentence case}
 
-Please use sentence case for section headers. You probably are familiar 
-with \LaTeX, but here's a simple example for an equation: 
+You presumably are already familiar with the use of \LaTeX. But let 
+us still have a quick look at how to typeset a simple equation: 
 %
 \begin{eqnarray}\label{eq:vcg}
 p_i(\boldsymbol{\hat{v}}) & = &
@@ -133,8 +134,9 @@ p_i(\boldsymbol{\hat{v}}) & = &
 \sum_{j \neq i} \hat{v}_j(f(\boldsymbol{\hat{v}})) 
 \end{eqnarray}
 %
-Use the usual combination of \verb|\label{}| and \verb|\ref{}| to refer
-to numbered equations, such as Equation~(\ref{eq:vcg}). Next, a theorem: 
+Use the usual combination of \verb|\label{}| and \verb|\ref{}| to 
+refer to numbered equations, such as Equation~(\ref{eq:vcg}). 
+Next, a theorem: 
 
 \begin{theorem}[Fermat, 1637]\label{thm:fermat}
 No triple $(a,b,c)$ of natural numbers satisfies the equation 
@@ -149,9 +151,8 @@ Table captions should be centred \emph{above} the table, while figure
 captions should be centred \emph{below} the figure.\footnote{Footnotes
 should be placed \emph{after} punctuation marks (such as full stops).}
  
-\begin{table}
+\begin{table}[h]
 \caption{Locations of selected conference editions.}
-\vspace*{-15pt}
 \centering
 \begin{tabular}{ll@{\hspace{8mm}}ll} 
 \toprule
@@ -160,30 +161,31 @@ ECAI-2000 & Berlin & ECAI-2010 & Lisbon \\
 ECAI-2020 & \multicolumn{3}{l}{Santiago de Compostela (online)} \\
 \bottomrule
 \end{tabular}
-\vspace*{-10pt}
 \end{table}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Citations and references}
 
-Make sure to include full bibliographic information for everything you 
-cite, whether it is a book~\cite{pearl2009causality}, a journal article 
-\cite{grosz1996collaborative,rumelhart1986learning,turing1950computing}, 
-a conference paper \cite{kautz1992planning}, or a preprint 
-\cite{perelman2002entropy}. The use of \BibTeX\ to prepare your list of 
-references is highly recommended. 
+Include full bibliographic information for everything you cite, 
+be it a book \citep{pearl2009causality}, a journal article 
+\citep{grosz1996collaborative,rumelhart1986learning,turing1950computing}, 
+a conference paper \citep{kautz1992planning}, or a preprint 
+\citep{perelman2002entropy}. The citations in the previous sentence are 
+known as \emph{parenthetical} citations, while this reference to the 
+work of \citet{turing1950computing} is an \emph{in-text} citation.
+The use of \BibTeX\ is highly recommended. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%% Use this environment to include acknowledgements (optional).
+%%% This will be omitted in doubleblind mode.
 
 \begin{ack}
-You may wish to use this (optional) section to thank your reviewers or 
-to acknowledge a funding agency. Use the \texttt{ack} environment to 
-typeset your acknowledgements. This will ensure that the text is 
-suppressed when you use the \texttt{doubleblind} option. 
-Acknowledgements can be included on the extra page intended for references.
+By using the \texttt{ack} environment to insert your (optional) 
+acknowledgements, you can ensure that the text is suppressed whenever 
+you use the \texttt{doubleblind} option. In the final version, 
+acknowledgements may be included on the extra page intended for references.
 \end{ack}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
