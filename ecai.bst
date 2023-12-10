@@ -940,8 +940,6 @@ MACRO {tcs} {"Theoretical Computer Science"}
 READ
 
 
-
-
 FUNCTION {sortify}
 { purify$
   "l" change.case$
