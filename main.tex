@@ -1,0 +1,137 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[doubleblind]{ecai} 
+% \documentclass{ecai} 
+
+\usepackage{latexsym}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{hyperref}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{definition}{Definition}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\BibTeX}{B\kern-.05em{\sc i\kern-.025em b}\kern-.08em\TeX}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\begin{frontmatter}
+
+  %%% Use this command to specify your submission number. In doubleblind mode, it will be printed on the first page.
+  \paperid{123}
+
+  \title{SPADA: A \underline{S}equential \underline{P}arametric C\underline{AD} Program \underline{A}gent with Fine-grained Control}
+
+  \author[A]{
+    \fnms{Keyou}~\snm{Zheng}
+    \thanks{Corresponding Author. Email: keyouzheng0915@gmail.com}
+  }
+
+  \address[A]{Guangdong University of Technology}
+
+  \begin{abstract}
+    We introduce \textbf{SPADA}, a Semantic Parametric CAD Program Agent that synthesizes editable and semantically structured CAD programs from multi-view images or natural language instructions. Unlike traditional CAD modeling systems that operate on low-level geometry or require manual scripting, SPADA integrates vision-language models (VLMs) and large language models (LLMs) to infer shape, part hierarchy, and design intent, enabling programmatic representations that are human-readable and modifiable. SPADA produces CAD code in a structured domain-specific language with parametric and hierarchical definitions, supporting fine-grained control over both geometry and semantics. We demonstrate its ability to reconstruct and edit complex 3D shapes from images or text prompts, and we evaluate its output with respect to geometric accuracy, program structure, and semantic consistency.
+  \end{abstract}
+
+\end{frontmatter}
+
+% Teaser Image & Contributions
+
+\section{Introduction}
+
+\textbf{Importance}. Computer-aided design (CAD) tools are central to engineering, manufacturing, and prototyping, yet authoring and editing complex 3D models remains time-consuming and expertise-dependent. Traditional CAD modeling workflows require users to construct geometry through feature trees or scripts, often without direct mechanisms for expressing high-level semantics such as part roles, functional relationships, or parametric constraints. While parametric modeling and symbolic representation allow for some degree of flexibility, current systems lack automation and multimodal interaction capabilities that can translate visual or textual descriptions into structured CAD programs. Recent advances in vision-language models (VLMs) and large language models (LLMs) open the possibility of intelligent agents that can reason across modalities to synthesize interpretable and editable programs. However, their application to structured CAD code generation remains underexplored, particularly with respect to preserving part semantics, enabling hierarchical design, and supporting downstream editing tasks. Furthermore, CAD programs often require a precise mapping between visual shape, symbolic structure, and physical function: a requirement that general-purpose models struggle to meet.
+
+\textbf{Novelty}. In this work, we introduce \textbf{SPADA}, the first multimodal code agent designed specifically for the generation of semantic and parametric CAD programs. SPADA takes as input either multi-view images of a 3D object or natural language prompts describing its structure and function. It produces interpretable CAD programs in a structured domain-specific language, where parts are defined hierarchically and parameters are explicitly declared. By leveraging pretrained VLMs for visual understanding and LLMs for code generation, SPADA bridges low-level geometry and high-level design semantics. Our system supports both shape reconstruction and user-guided editing, providing fine-grained control over model structure and enabling new forms of design interaction.
+
+\textbf{Research Questions \& Contributions}.
+
+SPADA operates in a multi-stage pipeline: it ingests a set of images capturing an object from different views, optionally processes semantic annotations (e.g., part labels, hierarchies), and outputs an \texttt{OpenSCAD} program composed of modular, parameterized components. The agent learns to ground visual cues into geometric primitives, infer structural relations, and synthesize code within the constraints of a CAD-specific DSL. This positions SPADA not as a black-box 3D generator, but as a \emph{semantically aligned, programmable design agent}. Our contributions are as follows:
+
+\begin{itemize}
+  \item We introduce \textbf{SPADA}, a CAD-agnostic agent for generating \emph{declarative, parametric CAD code} from multimodal input.
+  \item We leverage the synergy between \emph{VLMs for geometric grounding} and \emph{LLMs for symbolic synthesis}, enabling modular and editable program outputs.
+  \item We demonstrate that SPADA achieves high fidelity to input imagery while producing \emph{interpretable hierarchical CAD programs} across diverse shape categories.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Related Work}
+
+In this section, we
+
+\textbf{CAD Sequence Representation and Generation}. Prior research on CAD sequence representation and generation has explored multiple paradigms, including Boundary Representation (B-rep), Constructive Solid Geometry (CSG), and construction command sequences. B-rep methods focus on geometric and topological properties of CAD models and are often approached using graph-based techniques or diffusion models \citep{koch2019abc,guo2022complexgen}, though they introduce topological complexity. CSG-based techniques generate shapes via boolean operations on primitives \citep{ren2021csg}, but are less commonly used for parametric modeling. More recently, command sequence-based approaches have emerged as a dominant paradigm. For instance, \citet{wu2021deepcad} and \citet{willis2021fusion360} model CAD creation through sequences of sketch and extrusion operations. However, these models are typically limited to unconditional generation. Conditional CAD generation has been studied in various modalities: image-conditioned methods \citep{you2024img2cad,yuan2024openecad}, text-conditioned methods \citep{khan2024text2cad,badagabettu2024query2cad}, and point-cloud-based methods \citep{uy2022point2cyl,dupont2024transcad}. Meanwhile, some works have explored the application on generating CAD models with multimodal inputs, such as Img2CAD, Text2CAD leverages LLMs and VLMs to generate CAD programs from images or text prompts. Rather than focusing on undeclarative generation, SPADA aims to produce \emph{declarative} CAD programs that are interpretable and modifiable, allowing users to edit the generated code to achieve desired design outcomes.
+
+\textbf{Multimodal LLMs for Code Generation}.
+
+\textbf{Coding Agent}.
+
+\section{Background}
+
+\subsection{Generation}
+
+
+\section{SPADA: Semantic-aware Parametric CAD Program Agent}
+
+\subsection{Architecture} % High level Introduction to SPADA
+
+
+\subsection{Elements of SPADA} % Detailed introduction to each component of SPADA
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Experiments}
+
+\subsection{Experimental Setup}
+
+\subsubsection{Datasets}
+
+\subsubsection{Implementation Details}
+
+\subsubsection{Baselines}
+
+\subsubsection{Evaluation Metrics}
+
+\textbf{Chamfer Distance.} To assess geometric accuracy between the generated CAD models and ground truth, we use Chamfer Distance (CD) as our primary quantitative metric. Chamfer Distance measures the average distance between points on two surfaces, capturing how well the shapes match geometrically. For two point sets $X$ and $Y$ representing the surfaces of two 3D models, the Chamfer Distance is defined as:
+
+$$CD(X, Y) = \frac{1}{|X|} \sum_{x \in X} \min_{y \in Y} \|x - y\|^2 + \frac{1}{|Y|} \sum_{y \in Y} \min_{x \in X} \|y - x\|^2$$
+
+\textbf{Invality Ratio(IR).} To evaluate the validity of the generated CAD programs, we introduce a metric called Invality Ratio (IR). This metric quantifies the proportion of generated programs that successfully compile and produce valid 3D models. A lower IR indicates a higher success rate in generating valid CAD code. The IR is calculated as follows:
+
+$$IR = \frac{\text{Number of valid programs}}{\text{Total number of generated programs}}$$
+
+
+\subsection{Results}
+
+\subsection{Ablation Study}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Discussion}
+
+\subsection{Limitations}
+
+\subsection{Future Work}
+
+\section{Conclusion}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\bibliography{bibfile}
+
+\end{document}

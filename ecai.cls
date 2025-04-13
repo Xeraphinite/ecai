@@ -1302,11 +1302,6 @@
 % Supply start page for each paper
 \def\ecai#1{
 \setcounter{page}{#1}
-%\gdef\@myauth{\footsize\copyright\ 2004 \@authorfoot}
-%\gdef\@myref{\footsize ECAI 2004. {\it 16th European Conference on
-%  Artificial Intelligence\/}}
-%\gdef\@myedit{\footsize Edited by Frank van Harmelen}
-%\gdef\@mycopyright{\footsize Published in 2004 by IOS Press}
 }
 
 %Set page counter to one by default
