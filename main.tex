@@ -1,19 +1,115 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[letterpaper]{article} % DO NOT CHANGE THIS
+\usepackage[submission]{aaai2026}  % DO NOT CHANGE THIS
+\usepackage{times}  % DO NOT CHANGE THIS
+\usepackage{helvet}  % DO NOT CHANGE THIS
+\usepackage{courier}  % DO NOT CHANGE THIS
+\usepackage[hyphens]{url}  % DO NOT CHANGE THIS
+\usepackage{graphicx} % DO NOT CHANGE THIS
+\urlstyle{rm} % DO NOT CHANGE THIS
+\def\UrlFont{\rm}  % DO NOT CHANGE THIS
+\usepackage{natbib}  % DO NOT CHANGE THIS AND DO NOT ADD ANY OPTIONS TO IT
+\usepackage{caption} % DO NOT CHANGE THIS AND DO NOT ADD ANY OPTIONS TO IT
+\frenchspacing  % DO NOT CHANGE THIS
+\setlength{\pdfpagewidth}{8.5in} % DO NOT CHANGE THIS
+\setlength{\pdfpageheight}{11in} % DO NOT CHANGE THIS
+%
+% These are recommended to typeset algorithms but not required. See the subsubsection on algorithms. Remove them if you don't have algorithms in your paper.
+\usepackage{algorithm}
+\usepackage{algorithmic}
 
-\documentclass[doubleblind]{ecai} 
-% \documentclass{ecai} 
+%
+% These are are recommended to typeset listings but not required. See the subsubsection on listing. Remove this block if you don't have listings in your paper.
+\usepackage{newfloat}
+\usepackage{listings}
+\DeclareCaptionStyle{ruled}{labelfont=normalfont,labelsep=colon,strut=off} % DO NOT CHANGE THIS
+\lstset{%
+	basicstyle={\footnotesize\ttfamily},% footnotesize acceptable for monospace
+	numbers=left,numberstyle=\footnotesize,xleftmargin=2em,% show line numbers, remove this entire line if you don't want the numbers.
+	aboveskip=0pt,belowskip=0pt,%
+	showstringspaces=false,tabsize=2,breaklines=true}
+\floatstyle{ruled}
+\newfloat{listing}{tb}{lst}{}
+\floatname{listing}{Listing}
+%
+% Keep the \pdfinfo as shown here. There's no need
+% for you to add the /Title and /Author tags.
+\pdfinfo{
+/TemplateVersion (2026.1)
+}
 
-\usepackage{latexsym}
-\usepackage{amssymb}
-\usepackage{amsmath}
-\usepackage{amsthm}
-\usepackage{booktabs}
-\usepackage{enumitem}
-\usepackage{graphicx}
-\usepackage{color}
-\usepackage{hyperref}
+\setcounter{secnumdepth}{0} %May be changed to 1 or 2 if section numbers are desired.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Title
+% Your title must be in mixed case, not sentence case.
+% That means all verbs (including short verbs like be, is, using, and go),
+% nouns, adverbs, adjectives should be capitalized, including both words in hyphenated terms, while
+% articles, conjunctions, and prepositions are lower case unless they
+% directly follow a colon or long dash
+\title{SPADA: A Sequential Parametric CAD Program Agent with Fine-grained Control}
+
+\author{
+    %Authors
+    % All authors must be in the same font size and format.
+    Written by AAAI Press Staff\textsuperscript{\rm 1}\thanks{With help from the AAAI Publications Committee.}\\
+    AAAI Style Contributions by Pater Patel Schneider,
+    Sunil Issar,\\
+    J. Scott Penberthy,
+    George Ferguson,
+    Hans Guesgen,
+    Francisco Cruz\equalcontrib,
+    Marc Pujol-Gonzalez\equalcontrib
+}
+\affiliations{
+    %Afiliations
+    \textsuperscript{\rm 1}Association for the Advancement of Artificial Intelligence\\
+    % If you have multiple authors and multiple affiliations
+    % use superscripts in text and roman font to identify them.
+    % For example,
+
+    % Sunil Issar\textsuperscript{\rm 2},
+    % J. Scott Penberthy\textsuperscript{\rm 3},
+    % George Ferguson\textsuperscript{\rm 4},
+    % Hans Guesgen\textsuperscript{\rm 5}
+    % Note that the comma should be placed after the superscript
+
+    1101 Pennsylvania Ave, NW Suite 300\\
+    Washington, DC 20004 USA\\
+    % email address must be in roman text type, not monospace or sans serif
+    proceedings-questions@aaai.org
+%
+% See more examples next
+}
+
+%Example, Single Author, ->> remove \iffalse,\fi and place them surrounding AAAI title to use it
+\iffalse
+\title{My Publication Title --- Single Author}
+\author {
+    Author Name
+}
+\affiliations{
+    Affiliation\\
+    Affiliation Line 2\\
+    name@example.com
+}
+\fi
+
+\iffalse
+%Example, Multiple Authors, ->> remove \iffalse,\fi and place them surrounding AAAI title to use it
+\title{My Publication Title --- Multiple Authors}
+\author {
+    % Authors
+    First Author Name\textsuperscript{\rm 1},
+    Second Author Name\textsuperscript{\rm 2},
+    Third Author Name\textsuperscript{\rm 1}
+}
+\affiliations {
+    % Affiliations
+    \textsuperscript{\rm 1}Affiliation 1\\
+    \textsuperscript{\rm 2}Affiliation 2\\
+    firstAuthor@affiliation1.com, secondAuthor@affilation2.com, thirdAuthor@affiliation1.com
+}
+\fi
+
 
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}[theorem]{Lemma}
@@ -30,25 +126,18 @@
 
 \begin{document}
 
-\begin{frontmatter}
+\author{
+    % Keyou Zheng\\
+    % Guangdong University of Technology\\
+    % \texttt{keyouzheng0915@gmail.com}
+    Anonymous AAAI-26 submission
+}
 
-  %%% Use this command to specify your submission number. In doubleblind mode, it will be printed on the first page.
-  \paperid{123}
+\maketitle
 
-  \title{SPADA: A \underline{S}equential \underline{P}arametric C\underline{AD} Program \underline{A}gent with Fine-grained Control}
-
-  \author[A]{
-    \fnms{Keyou}~\snm{Zheng}
-    \thanks{Corresponding Author. Email: keyouzheng0915@gmail.com}
-  }
-
-  \address[A]{Guangdong University of Technology}
-
-  \begin{abstract}
-    We introduce \textbf{SPADA}, a Semantic Parametric CAD Program Agent that synthesizes editable and semantically structured CAD programs from multi-view images or natural language instructions. Unlike traditional CAD modeling systems that operate on low-level geometry or require manual scripting, SPADA integrates vision-language models (VLMs) and large language models (LLMs) to infer shape, part hierarchy, and design intent, enabling programmatic representations that are human-readable and modifiable. SPADA produces CAD code in a structured domain-specific language with parametric and hierarchical definitions, supporting fine-grained control over both geometry and semantics. We demonstrate its ability to reconstruct and edit complex 3D shapes from images or text prompts, and we evaluate its output with respect to geometric accuracy, program structure, and semantic consistency.
-  \end{abstract}
-
-\end{frontmatter}
+\begin{abstract}
+    We introduce SPADA, a Semantic Parametric CAD Program Agent that synthesizes editable and semantically structured CAD programs from multi-view images or natural language instructions. Unlike traditional CAD modeling systems that operate on low-level geometry or require manual scripting, SPADA integrates vision-language models (VLMs) and large language models (LLMs) to infer shape, part hierarchy, and design intent, enabling programmatic representations that are human-readable and modifiable. SPADA produces CAD code in a structured domain-specific language with parametric and hierarchical definitions, supporting fine-grained control over both geometry and semantics. We demonstrate its ability to reconstruct and edit complex 3D shapes from images or text prompts, and we evaluate its output with respect to geometric accuracy, program structure, and semantic consistency.
+\end{abstract}
 
 % Teaser Image & Contributions
 
@@ -63,34 +152,38 @@
 SPADA operates in a multi-stage pipeline: it ingests a set of images capturing an object from different views, optionally processes semantic annotations (e.g., part labels, hierarchies), and outputs an \texttt{OpenSCAD} program composed of modular, parameterized components. The agent learns to ground visual cues into geometric primitives, infer structural relations, and synthesize code within the constraints of a CAD-specific DSL. This positions SPADA not as a black-box 3D generator, but as a \emph{semantically aligned, programmable design agent}. Our contributions are as follows:
 
 \begin{itemize}
-  \item We introduce \textbf{SPADA}, a CAD-agnostic agent for generating \emph{declarative, parametric CAD code} from multimodal input.
-  \item We leverage the synergy between \emph{VLMs for geometric grounding} and \emph{LLMs for symbolic synthesis}, enabling modular and editable program outputs.
-  \item We demonstrate that SPADA achieves high fidelity to input imagery while producing \emph{interpretable hierarchical CAD programs} across diverse shape categories.
+    \item We introduce \textbf{SPADA}, a CAD-agnostic agent for generating \emph{declarative, parametric CAD code} from multimodal input.
+    \item We leverage the synergy between \emph{VLMs for geometric grounding} and \emph{LLMs for symbolic synthesis}, enabling modular and editable program outputs.
+    \item We demonstrate that SPADA achieves high fidelity to input imagery while producing \emph{interpretable hierarchical CAD programs} across diverse shape categories.
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% Explain methods through contrasts
 \section{Related Work}
 
-In this section, we
+CAD program generation tasks fall into three main facets: (1) domain-specific CAD program generation, (2) multimodal alignment, and (3) DSL code generation. Each facet contributes to the overall goal of generating interpretable and modifiable CAD programs from multimodal inputs.
 
-\textbf{CAD Sequence Representation and Generation}. Prior research on CAD sequence representation and generation has explored multiple paradigms, including Boundary Representation (B-rep), Constructive Solid Geometry (CSG), and construction command sequences. B-rep methods focus on geometric and topological properties of CAD models and are often approached using graph-based techniques or diffusion models \citep{koch2019abc,guo2022complexgen}, though they introduce topological complexity. CSG-based techniques generate shapes via boolean operations on primitives \citep{ren2021csg}, but are less commonly used for parametric modeling. More recently, command sequence-based approaches have emerged as a dominant paradigm. For instance, \citet{wu2021deepcad} and \citet{willis2021fusion360} model CAD creation through sequences of sketch and extrusion operations. However, these models are typically limited to unconditional generation. Conditional CAD generation has been studied in various modalities: image-conditioned methods \citep{you2024img2cad,yuan2024openecad}, text-conditioned methods \citep{khan2024text2cad,badagabettu2024query2cad}, and point-cloud-based methods \citep{uy2022point2cyl,dupont2024transcad}. Meanwhile, some works have explored the application on generating CAD models with multimodal inputs, such as Img2CAD, Text2CAD leverages LLMs and VLMs to generate CAD programs from images or text prompts. Rather than focusing on undeclarative generation, SPADA aims to produce \emph{declarative} CAD programs that are interpretable and modifiable, allowing users to edit the generated code to achieve desired design outcomes.
+% Facet 1: Domain-specific CAD program generation
+\textbf{CAD Representation and Sequence Generation}. Prior research on CAD sequence representation and generation has explored multiple paradigms, including Boundary Representation (B-rep), Constructive Solid Geometry (CSG), and neural coding. B-rep methods focus on geometric and topological properties of CAD models and are often approached using graph-based techniques or diffusion models \citep{koch2019abc,guo2022complexgen}, though they introduce topological complexity. CSG-based techniques generate shapes via boolean operations on primitives \citep{ren2021csg}, but are less commonly used for parametric modeling. More recently, command sequence-based approaches have emerged as a dominant paradigm. For instance, \citet{wu2021deepcad} and \citet{willis2021fusion360} model CAD creation through sequences of sketch and extrusion operations. However, these models are typically limited to unconditional generation. Conditional CAD generation has been studied in various modalities: image-conditioned methods \citep{you2024img2cad,yuan2024openecad}, text-conditioned methods \citep{khan2024text2cad,badagabettu2024query2cad}, and point-cloud-based methods \citep{uy2022point2cyl,dupont2024transcad}. Our approach, SPADA, differs by focusing on declarative, parametric CAD programs in OpenSCAD, which provides several advantages over previous methods. While traditional approaches either focus on low-level geometric representations or specific CAD software commands, OpenSCAD's declarative syntax allows for clearer expression of design intent and hierarchical part relationships. This representation is particularly beneficial when integrated with LLMs, as the code remains readable and structurally organized. Furthermore, SPADA is designed with a "hitchhiker" architecture that can leverage improvements in general-purpose LLMs without requiring structural changes to the system itself. This means that as foundational models improve in capability, SPADA can automatically benefit from these advancements while maintaining its domain-specific focus on CAD program generation.
 
-\textbf{Multimodal LLMs for Code Generation}.
+% Facet 2: Multimodal Alignment
+\textbf{Multimodal Alignment}.
 
+% Facet 3: DSL Code Generation
 \textbf{Coding Agent}.
 
-\section{Background}
 
-\subsection{Generation}
-
-
+…
 \section{SPADA: Semantic-aware Parametric CAD Program Agent}
 
 \subsection{Architecture} % High level Introduction to SPADA
 
+Build on the top of CodeAct
 
 \subsection{Elements of SPADA} % Detailed introduction to each component of SPADA
+
+\textbf{}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -105,6 +198,8 @@ In this section, we
 
 \subsubsection{Baselines}
 
+As we choose to generate CAD programs by using DSLs, we compare our method with the following baselines: Talk2CAD, Img2CAD, and Text2CAD.
+
 \subsubsection{Evaluation Metrics}
 
 \textbf{Chamfer Distance.} To assess geometric accuracy between the generated CAD models and ground truth, we use Chamfer Distance (CD) as our primary quantitative metric. Chamfer Distance measures the average distance between points on two surfaces, capturing how well the shapes match geometrically. For two point sets $X$ and $Y$ representing the surfaces of two 3D models, the Chamfer Distance is defined as:
@@ -112,8 +207,6 @@ In this section, we
 $$CD(X, Y) = \frac{1}{|X|} \sum_{x \in X} \min_{y \in Y} \|x - y\|^2 + \frac{1}{|Y|} \sum_{y \in Y} \min_{x \in X} \|y - x\|^2$$
 
 \textbf{Invality Ratio(IR).} To evaluate the validity of the generated CAD programs, we introduce a metric called Invality Ratio (IR). This metric quantifies the proportion of generated programs that successfully compile and produce valid 3D models. A lower IR indicates a higher success rate in generating valid CAD code. The IR is calculated as follows:
-
-$$IR = \frac{\text{Number of valid programs}}{\text{Total number of generated programs}}$$
 
 
 \subsection{Results}
@@ -131,6 +224,7 @@ $$IR = \frac{\text{Number of valid programs}}{\text{Total number of generated pr
 \section{Conclusion}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 \bibliography{bibfile}
 
